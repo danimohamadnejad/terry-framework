@@ -1,5 +1,7 @@
 <?php
 namespace Framework\Http;
+use Framework\Routing\Route;
+
 class Request{
   private static $instance = null;
   public const GET = "GET";
@@ -64,5 +66,11 @@ class Request{
       return $data[$key];
     }
     return null;
+  }
+  
+  public function dispatch(Route $route){
+    $param_values = $route->extract_param_values_from_path($this->uri());
+    var_dump($param_values);
+
   }
 }

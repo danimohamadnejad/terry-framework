@@ -22,11 +22,11 @@ class RouteSegment{
         $name = str_replace("{", "", $name);
         $name = str_replace("?", "", $name);
         $this->name = $name;
-        $this->is_parametric = strpos($this->segment_string, "{")!==false && strpos($this->segment_string, "}")!==false;
+        $this->is_parametric = strpos($this->segment_string, "}") !== false && strpos($this->segment_string, "{") === 0;
         $this->is_optional = $this->is_parametric && strpos($this->segment_string, "?")!==false;
     }
     public function is_parametric(){
-        return $this->is_paramertic;
+        return $this->is_parametric;
     }
     public function is_optional(){
         return $this->is_optional;
@@ -34,5 +34,8 @@ class RouteSegment{
 
     public function get_name(){
         return $this->name;
+    }
+    public function get_segment_string(){
+        return $this->segment_string;
     }
 }

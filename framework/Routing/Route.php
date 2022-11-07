@@ -85,4 +85,14 @@ class Route {
     public function get_segments(){
         return $this->segments;
     }
+    public function extract_param_values_from_path(string $path){
+     $path_segments = explode('/', $path);
+     $out = [];
+     foreach($this->get_segments() as $index=>$segment){
+      if($segment->is_parametric() && isset($path_segments[$index])){
+        $out[$segment->get_name()] = $path_segments[$index];
+      }  
+     }
+     return $out;
+    }
 }
