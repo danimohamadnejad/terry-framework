@@ -57,6 +57,9 @@ class Route {
         $this->method = $method;
         return $this;
     }
+    public function get_method(){
+        return $this->method;
+    }
     public static function get_routes_by_method($method){
         return array_filter(static::$routes, function($route) use($method){
            return $route->get_method() == $method;  
