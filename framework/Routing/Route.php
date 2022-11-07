@@ -1,6 +1,7 @@
 <?php
 namespace Framework\Routing;
 use Framework\Http\Request;
+use Framework\Routing\RouteSegment;
 
 class Route {
     private static $routes = [];
@@ -9,6 +10,7 @@ class Route {
     private $name = '';
     private $uri_pattern = '';
     private $method = '';
+    private $segments = [];
 
     private function __construct(string $uri_pattern, array $destination = []){
         $this->uri_pattern = $uri_pattern;
@@ -19,24 +21,28 @@ class Route {
     public static function get(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
         $route->method(Request::GET);
+        $route->set_segments();
         static::store_route($route);
         return $route;
     }
     public static function post(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
         $route->method(Request::POST);
+        $route->set_segments();
         static::store_route($route);
         return $route;
     }
     public static function put(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
         $route->method(Request::PUT);
+        $route->set_segments();
         static::store_route($route);
         return $route;
     }
     public static function delete(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
         $route->method(Request::DELETE);
+        $route->set_segments();
         static::store_route($route);
         return $route;
     }
@@ -64,5 +70,16 @@ class Route {
         return array_filter(static::$routes, function($route) use($method){
            return $route->get_method() == $method;  
         });
+    }
+    public function get_uri_pattern(){
+        return trim($this->uri_pattern, "/");
+    }
+    private function set_segments(){
+        $uri = $this->get_uri_pattern();
+        $segments = explode('/', $uri);
+        foreach($segments as $segment){
+         $segment = RouteSegment::create_instance($section);
+         $this->segments[] = $segment;
+        }        
     }
 }

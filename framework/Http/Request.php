@@ -22,7 +22,7 @@ class Request{
     if($question_mark_position!==false){
       $uri = substr($uri, 0, $question_mark_position);
     }
-    return $uri;
+    return trim($uri, "/");
   }
   
   public function get_method(){
