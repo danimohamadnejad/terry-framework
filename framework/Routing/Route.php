@@ -62,4 +62,7 @@ class Route {
            return $route->get_method() == $method;  
         });
     }
+    public function get_method(){
+        return $this->method;
+    }
 }
