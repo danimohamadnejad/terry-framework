@@ -17,9 +17,14 @@ class Request{
     return static::$instance;
   } 
   public function uri(){
-    return $_SERVER['REQUEST_URI'];
+    $uri = $_SERVER["REQUEST_URI"];
+    $question_mark_position = strpos($uri, "?");
+    if($question_mark_position!==false){
+      $uri = substr($uri, 0, $question_mark_position);
+    }
+    return $uri;
   }
-
+  
   public function get_method(){
    $method = $this->input($this->method_key);
    if(is_null($method) || !$this->validate_method($method)){
