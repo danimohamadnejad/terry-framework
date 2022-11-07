@@ -17,6 +17,5 @@ class Router{
   
   public function find_route(){
    $routes = Route::get_routes_by_method(Request::instance()->get_method());
-   var_dump($routes);exit;
   }
 }
