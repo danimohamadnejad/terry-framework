@@ -50,4 +50,5 @@ class Route {
     public static function get_routes(){
         return static::$routes;
     }
+    
 }

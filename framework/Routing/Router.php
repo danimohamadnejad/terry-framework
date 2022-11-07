@@ -15,6 +15,7 @@ class Router{
   } 
   
   public function find_route(){
-   
+   $routes = Route::get_routes();
+   var_dump($routes);exit;
   }
 }
