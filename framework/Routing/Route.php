@@ -1,5 +1,7 @@
 <?php
 namespace Framework\Routing;
+use Framework\Http\Request;
+
 class Route {
     private static $routes = [];
     private $controller_class = '';

@@ -16,7 +16,7 @@ class Application{
     return static::$instance;
   } 
   public function router(){
-    return Router::getInstance();
+    return Router::instance();
   }
   public function request(){
    return Request::instance(); 
