@@ -28,7 +28,6 @@ class Application{
    $this->load_routes(); 
    $route = $this->router()->find_route();
 
-   var_dump($route);exit;
    /* $res = $this->request()->set_route($route)->send(); */
   }
 }

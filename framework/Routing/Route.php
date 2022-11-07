@@ -78,7 +78,7 @@ class Route {
         $uri = $this->get_uri_pattern();
         $segments = explode('/', $uri);
         foreach($segments as $segment){
-         $segment = RouteSegment::create_instance($section);
+         $segment = RouteSegment::create_instance($segment);
          $this->segments[] = $segment;
         }        
     }
