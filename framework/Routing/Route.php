@@ -82,4 +82,7 @@ class Route {
          $this->segments[] = $segment;
         }        
     }
+    public function get_segments(){
+        return $this->segments;
+    }
 }

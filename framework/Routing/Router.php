@@ -22,12 +22,27 @@ class Router{
    }
    $uri = Request::instance()->uri();
    $uri_sections = explode("/", $uri);
+   $found_route = null;
    foreach($routes as $route){
      $route_uri = $route->get_uri_pattern();
      if($route_uri === $uri){
       return $route;
      }
-     
+     $route_segments = $route->get_segments();
+     if(count($uri_sections) > count($route_segments)){
+      continue;
+     }
+     foreach($route_segments as $index=>$segment){
+       $segment_in_uri = isset($uri_sections[$index]) ? $uri_sections[$index] : null;
+       if(!$segment->is_parametric() && (is_null($segment_in_uri) || $segment_in_uri!==$segment->get_name())){
+        $found_route = null;
+        break;
+       }else if(($segment->is_parametric() && !$segment->is_optional()) && is_null($segment_in_uri)){
+        $found_route = null;
+        break;
+       }
+     }
    }
+   return $found_route;
   }
 }

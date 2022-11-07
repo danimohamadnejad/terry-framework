@@ -27,7 +27,6 @@ class Application{
   public function run(){
    $this->load_routes(); 
    $route = $this->router()->find_route();
-
    /* $res = $this->request()->set_route($route)->send(); */
   }
 }
