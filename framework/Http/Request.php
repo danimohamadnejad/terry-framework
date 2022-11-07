@@ -18,5 +18,10 @@ class Request{
   public function uri(){
     return $_SERVER['REQUEST_URI'];
   }
+
+  public function get_method(){
+      
+  }
+  
   
 }
