@@ -15,10 +15,26 @@ class Route {
     }
     public static function get(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
+        $route->method(Request::GET);
+        static::store_route($route);
         return $route;
     }
     public static function post(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
+        $route->method(Request::POST);
+        static::store_route($route);
+        return $route;
+    }
+    public static function put(string $uri_pattern, array $destination){
+        $route = static::create_instance($uri_pattern, $destination);
+        $route->method(Request::PUT);
+        static::store_route($route);
+        return $route;
+    }
+    public static function delete(string $uri_pattern, array $destination){
+        $route = static::create_instance($uri_pattern, $destination);
+        $route->method(Request::DELETE);
+        static::store_route($route);
         return $route;
     }
     private static function create_instance(string $uri_pattern, array $destination){
@@ -27,5 +43,11 @@ class Route {
     public function name($name){
         $this->name = $name;
         return $this;
+    }
+    private static function store_route(Route $route){
+        static::$routes[] = $route;
+    }
+    public static function get_routes(){
+        return static::$routes;
     }
 }

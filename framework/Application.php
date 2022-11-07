@@ -4,7 +4,6 @@ use Framework\Http\Request;
 class Application{
   private static $instance = null;
   private function __construct(){
-    
   } 
   public static function instance(){
     if(is_null(static::$instance)){
