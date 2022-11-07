@@ -6,7 +6,9 @@ class Route {
     private $controller_method = '';
     private $name = '';
     private $uri_pattern = '';
+    private $method = '';
 
+    
     private function __construct(string $uri_pattern, array $destination = []){
         $this->uri_pattern = $uri_pattern;
         list($controller_class, $controller_method) = $destination;
@@ -49,5 +51,9 @@ class Route {
     }
     public static function get_routes(){
         return static::$routes;
+    }
+    public function method($method){
+        $this->method = $method;
+        return $this;
     }
 }
