@@ -95,4 +95,12 @@ class Route {
      }
      return $out;
     }
+
+    public function get_controller_class(){
+        return $this->controller_class;
+    }
+    public function get_controller_method(){
+        return $this->controller_method;
+    }
+    
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Framework\Http;
 use Framework\Routing\Route;
+use Framework\Http\RequestDispatcher;
 
 class Request{
   private static $instance = null;
@@ -9,8 +10,9 @@ class Request{
   public const POST = "POST";
   public const DELETE = "DELETE";
   private $method_key = '__method';
-
+  private RequestDispatcher $dispatcher;
   private function __construct(){
+    $this->dispatcher = new RequestDispatcher();
   } 
   public static function instance(){
     if(is_null(static::$instance)){
@@ -69,8 +71,6 @@ class Request{
   }
   
   public function dispatch(Route $route){
-    $param_values = $route->extract_param_values_from_path($this->uri());
-    var_dump($param_values);
-
+    $res = $this->dispatcher->dispatch($route);
   }
 }
