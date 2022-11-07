@@ -3,7 +3,7 @@ namespace Framework\Routing;
 class RouteSegment{
  
     private $name = '';
-    private $is_paramertic = false;
+    private $is_parametric = false;
     private $is_optional = false;
     private $segment_string = '';
 
@@ -26,7 +26,7 @@ class RouteSegment{
         $this->is_optional = $this->is_parametric && strpos($this->segment_string, "?")!==false;
     }
     public function is_parametric(){
-        return $this->is_paramertic;
+        return $this->is_parametric;
     }
     public function is_optional(){
         return $this->is_optional;
