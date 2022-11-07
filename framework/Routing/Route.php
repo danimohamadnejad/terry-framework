@@ -15,12 +15,17 @@ class Route {
     }
     public static function get(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
+        return $route;
     }
     public static function post(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
-            
+        return $route;
     }
     private static function create_instance(string $uri_pattern, array $destination){
         return new Route($uri_pattern, $destination);
+    }
+    public function name($name){
+        $this->name = $name;
+        return $this;
     }
 }
