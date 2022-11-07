@@ -8,4 +8,5 @@ class Route {
     private static function create_instance(){
         return new self;    
     }
+    
 }
