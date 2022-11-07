@@ -70,7 +70,6 @@ class Request{
   
   public function dispatch(Route $route){
     $param_values = $route->extract_param_values_from_path($this->uri());
-    var_dump($param_values);
 
   }
 }
