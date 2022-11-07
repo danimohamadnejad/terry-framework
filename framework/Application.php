@@ -1,8 +1,12 @@
 <?php
 namespace Framework;
 use Framework\Http\Request;
+use Framework\Routing\Router;
+
 class Application{
   private static $instance = null;
+  private $request_directed = false;
+
   private function __construct(){
   } 
   public static function instance(){
@@ -11,7 +15,9 @@ class Application{
     }
     return static::$instance;
   } 
-  
+  public function router(){
+    return Router::getInstance();
+  }
   public function request(){
    return Request::instance(); 
   }
@@ -20,5 +26,7 @@ class Application{
   }
   public function run(){
    $this->load_routes(); 
+   $route = $this->router()->find_route();
+   /* $res = $this->request()->set_route($route)->send(); */
   }
 }
