@@ -109,6 +109,8 @@ class Route {
        $attribute_stack->push($attributes);
        $closure();
        $attribute_stack->pop();
+       foreach(Route::get_routes() as $route){
+       }
     }
     
     public function set_uri_pattern(string $uri_pattern){

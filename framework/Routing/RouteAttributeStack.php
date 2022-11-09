@@ -46,7 +46,6 @@ class RouteAttributeStack{
      if(!empty($route_uri))
       $uri.=$route_uri;
      $this->route->set_uri_pattern($uri); 
-     var_dump($this->route);exit;
      return $this;
     }
 }
