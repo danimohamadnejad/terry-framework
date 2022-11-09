@@ -2,6 +2,7 @@
 namespace Framework\Routing;
 use Framework\Http\Request;
 use Framework\Routing\RouteSegment;
+use Framework\Routing\RouteAttributeStack;
 
 class Route {
     private static $routes = [];
@@ -17,6 +18,7 @@ class Route {
         list($controller_class, $controller_method) = $destination;
         $this->controller_class = $controller_class;
         $this->controller_method = $controller_method;
+        RouteAttributeStack::instance()->set_route($this)->run();
     }
     public static function get(string $uri_pattern, array $destination){
         $route = static::create_instance($uri_pattern, $destination);
@@ -101,6 +103,12 @@ class Route {
     }
     public function get_controller_method(){
         return $this->controller_method;
+    }
+    public static function group(array $attributes, \Closure $closure){
+       $attribute_stack = RouteAttributeStack::instance();
+       $attribute_stack->push($attributes);
+       $closure();
+       $attribute_stack->pop();
     }
     
 }
