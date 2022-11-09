@@ -52,6 +52,10 @@ class Route {
         return new Route($uri_pattern, $destination);
     }
     public function name($name){
+        $this->name.=$name;
+        return $this;
+    }
+    public function set_name($name){
         $this->name = $name;
         return $this;
     }
@@ -65,6 +69,7 @@ class Route {
         $this->method = $method;
         return $this;
     }
+  
     public function get_method(){
         return $this->method;
     }
