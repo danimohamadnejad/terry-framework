@@ -2,5 +2,7 @@
 use Framework\Routing\Route;
 use App\Http\Controllers\HomeController;
 Route::group(['prefix'=>'users'], function(){
- Route::get('', [HomeController::class, 'index'])->name('home');
+    Route::group(['prefix'=>"iran-users"], function(){
+        Route::get('{city?}', ['daw','daw']);
+    });
 });

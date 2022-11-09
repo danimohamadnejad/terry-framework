@@ -35,9 +35,18 @@ class RouteAttributeStack{
     }
     private function use_prefixes(){
      $attribute_stack = $this->attribute_stack;
+     $uri = '';
      foreach($attribute_stack as $attributes){
-        
+      if(isset($attributes['prefix']) && !empty($attributes['prefix'])){
+       $prefix = trim($attributes['prefix'], '/');
+       $uri.=$prefix.'/';
+      }  
      }
+     $route_uri = $this->route->get_uri_pattern();
+     if(!empty($route_uri))
+      $uri.=$route_uri;
+     $this->route->set_uri_pattern($uri); 
+     var_dump($this->route);exit;
      return $this;
     }
 }

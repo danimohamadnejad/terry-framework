@@ -111,4 +111,8 @@ class Route {
        $attribute_stack->pop();
     }
     
+    public function set_uri_pattern(string $uri_pattern){
+        $this->uri_pattern = trim($uri_pattern, "/");
+        return $this;
+    }
 }
