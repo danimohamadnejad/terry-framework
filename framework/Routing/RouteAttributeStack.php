@@ -34,7 +34,11 @@ class RouteAttributeStack{
      $this->use_prefixes();
     }
     private function use_prefixes(){
-     $attribute_stack = $this->attribute_stack;
+     $attribute_stack = array_filter($this->attribute_stack, function($attributes){
+        return isset($attributes['prefix']) && !empty($attributes['prefix']);
+     });
+     if(!count($attribute_stack))
+      return $this;
      $uri = '';
      foreach($attribute_stack as $attributes){
       if(isset($attributes['prefix']) && !empty($attributes['prefix'])){
