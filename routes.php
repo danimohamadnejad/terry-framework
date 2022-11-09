@@ -1,7 +1,7 @@
 <?php
 use Framework\Routing\Route;
 use App\Http\Controllers\HomeController;
-Route::group(['prefix'=>'site'], function(){
+Route::group(['prefix'=>'site', 'alias'=>'site.'], function(){
     Route::group(['prefix'=>'users'], function(){
         Route::get('', ['','']);
     });
@@ -14,3 +14,7 @@ Route::group(['prefix'=>'site'], function(){
     });
 });
  
+ 
+foreach(Route::get_routes() as $route){
+
+}
