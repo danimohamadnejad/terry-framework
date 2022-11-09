@@ -31,8 +31,23 @@ class RouteAttributeStack{
     }
     
     public function run(){
-     $this->use_prefixes();
+     $this->use_prefixes()->use_aliases();
     }
+    
+    private function use_aliases(){
+      $attribute_stack = array_filter($this->attribute_stack, function($d){
+        return isset($d['alias']) && !empty($d['alias']);
+      });
+      if(!count($attribute_stack))
+       return $this;
+      $route_name = "";
+      foreach($attribute_stack as $attributes){
+        $route_name.=$attributes['alias'];
+      }
+      $this->route->name($route_name.$this->route->get_name());
+      return $this;
+    }
+
     private function use_prefixes(){
      $attribute_stack = array_filter($this->attribute_stack, function($attributes){
         return isset($attributes['prefix']) && !empty($attributes['prefix']);
