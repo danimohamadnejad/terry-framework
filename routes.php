@@ -1,19 +1,13 @@
 <?php
 use Framework\Routing\Route;
 use App\Http\Controllers\HomeController;
+
 Route::group(['prefix'=>'site', 'alias'=>'site.'], function(){
-    Route::group(['prefix'=>'users.'], function(){
-        Route::get('new', ['',''])->name('new-users');
-    });
-    Route::group(['prefix'=>'products'], function(){
-        Route::get("", ["",""]);
-        Route::group(['prefix'=>'amazon-products'], function(){
-            Route::get("",["",""]);
-            Route::get("amazon-primiers", ['','']);
+    Route::group(['prefix'=>'products.'], function(){
+        Route::group(['prefix'=>'amazon-products.'], function(){
+            Route::get("{name}", [HomeController::class, 'index']);
         }); 
     });
 });
  
  
-foreach(Route::get_routes() as $route){
-}
