@@ -1,10 +1,18 @@
 <?php
 namespace App\Http\Controllers;
+class user{
+ private profile $profile;
+ public function __construct(profile $profile){
+    $this->profile = $profile;
+ }
+}
+class profile{
+ 
+}
 class HomeController{
     public function index($dani){
-        echo "this is index method";
     }
     public function home(){
-        echo "this is home";
+        echo app()->make(user::class);
     }
 }

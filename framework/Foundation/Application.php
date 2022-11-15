@@ -3,7 +3,7 @@ namespace Framework\Foundation;
 use Framework\Http\Request;
 use Framework\Routing\Router;
 use Framework\Foundation\ServiceProvider;
-use Framework\Foundation\ServiceContainer;
+use Framework\Foundation\DependencyInjection\ServiceContainer;
 
 class Application{
   private static $instance = null;
@@ -40,5 +40,8 @@ class Application{
   public function load_service_providers(){
     ServiceProvider::load_providers();
     return $this;
+  }
+  public function make(string $class){
+    return $this->service_container()->make($class);
   }
 }

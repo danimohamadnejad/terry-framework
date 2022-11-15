@@ -1,5 +1,6 @@
 <?php
-namespace Framework\Foundation;
+namespace Framework\Foundation\DependencyInjection;
+use Framework\Foundation\DependencyInjection\ReflectionMethod;
 class ServiceContainer{
     private static $instance = null;
     private function __construct(){
@@ -10,6 +11,11 @@ class ServiceContainer{
         static::$instance = new ServiceContainer;
       } 
       return static::$instance; 
+    }
+
+    public function make(string $class){
+      $dani = ReflectionMethod::make($class, $this);
+      
     }
     
 }
