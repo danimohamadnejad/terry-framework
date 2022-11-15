@@ -1,6 +1,6 @@
 <?php
 namespace Framework\Foundation\DependencyInjection;
-use Framework\Foundation\DependencyInjection\InstantiableMethod;
+use Framework\Foundation\DependencyInjection\InstantiateableMethod;
 class ServiceContainer{
     private static $instance = null;
     private function __construct(){
@@ -14,7 +14,7 @@ class ServiceContainer{
     }
 
     public function make(string $class){
-      $dani = InstantiableMethod::make($class, $this);
+      $dani = InstantiateableMethod::make($class, $this);
       $dani->set_name("__construct")->prepare_arguments();
     }
     

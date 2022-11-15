@@ -2,7 +2,7 @@
 namespace Framework\Foundation\DependencyInjection;
 use Framework\Foundation\DependencyInjection\ServiceContainer;
 
-class InstantiableMethod {
+class InstantiateableMethod {
     private string $class;
     private ServiceContainer $service_container;
     private string $name;
