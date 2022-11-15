@@ -1,16 +1,15 @@
 <?php
 use Framework\Routing\Route;
 use App\Http\Controllers\HomeController;
-Route::group(['prefix'=>'site'], function(){
-    Route::group(['prefix'=>'users'], function(){
-        Route::get('', ['','']);
+  Route::get("{name}", [HomeController::class, 'home']);
+  Route::group(['prefix'=>'site'], function(){
+    Route::get("{name}", [HomeController::class, 'index'])->name('index');
+    Route::group(['prefix'=>'friends'], function(){
+        Route::get("", [HomeController::class, 'index2'])->name('index2');
     });
-    Route::group(['prefix'=>'products'], function(){
-        Route::get("", ["",""]);
-        Route::group(['prefix'=>'amazon-products'], function(){
-            Route::get("",["",""]);
-            Route::get("amazon-primiers", ['','']);
-        }); 
-    });
-});
- 
+  });
+/*   
+  $routes = Route::get_routes();
+  foreach($routes as $route){
+    echo $route->get_uri_pattern().'<br/>';
+  }   */

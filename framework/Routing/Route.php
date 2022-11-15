@@ -117,4 +117,7 @@ class Route {
         $this->uri_pattern = trim($uri_pattern, "/");
         return $this;
     }
+    public function get_name(){
+        return $this->name;
+    }
 }

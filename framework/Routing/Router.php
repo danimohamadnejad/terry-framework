@@ -32,7 +32,7 @@ class Router{
      if(count($uri_sections) > count($route_segments)){
       continue;
      }
-     $found_route = $route;
+     $found_route = clone $route;
      foreach($route_segments as $index=>$segment){
        $segment_in_uri = isset($uri_sections[$index]) ? $uri_sections[$index] : null;
        if(!$segment->is_parametric() && (is_null($segment_in_uri) || $segment_in_uri!==$segment->get_name())){
@@ -43,7 +43,9 @@ class Router{
         break;
        }
      }
+     if($found_route)
+      return $found_route;
    }
-   return $found_route;
+   return null;
   }
 }
