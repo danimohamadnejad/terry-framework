@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 class user{
  private profile $profile;
- public function __construct(profile $profile){
+ public function __construct(nt $profile){
     $this->profile = $profile;
  }
 }

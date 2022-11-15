@@ -7,7 +7,8 @@ class InstantiableMethod {
     private ServiceContainer $service_container;
     private string $name;
     private \ReflectionClass $reflection_class_object;
-
+    private array $custom_args = [];
+    
     private function __construct(string $class, ServiceContainer $service_container){
         $this->class = $class;
         $this->service_container = $service_container;
@@ -23,6 +24,12 @@ class InstantiableMethod {
         $this->name = $name;
         return $this;
     }
+
+    public function set_custom_args(array $custom_args){
+       $this->custom_args = $custom_args;
+       return $this; 
+    }
+
     public function prepare_arguments(): array {
      $reflection_class_object = $this->reflection_class_object;
      if($reflection_class_object->hasMethod($this->name)){
@@ -30,7 +37,10 @@ class InstantiableMethod {
       $parameters_count = $reflection_method->getNumberOfParameters();
       if($parameters_count == 0) 
        return [];
-       
+      foreach($reflection_method->getParameters() as $index=>$param){
+        $ParamClass = $param->getClass();
+        $param_reflection_object = $param->getClass();
+      } 
      }
      return [];
     }
