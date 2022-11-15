@@ -2,7 +2,7 @@
 namespace Framework\Foundation\DependencyInjection;
 use Framework\Foundation\DependencyInjection\ServiceContainer;
 
-class InstantiateableMethod {
+class InjectionMethod {
     private string $class;
     private ServiceContainer $service_container;
     private string $name;
@@ -32,17 +32,24 @@ class InstantiateableMethod {
 
     public function prepare_arguments(): array {
      $reflection_class_object = $this->reflection_class_object;
+     $out = []; 
      if($reflection_class_object->hasMethod($this->name)){
       $reflection_method = $reflection_class_object->getMethod($this->name);
       $parameters_count = $reflection_method->getNumberOfParameters();
       if($parameters_count == 0) 
-       return [];
+       return $out;
+      $custom_args = $this->custom_args;
       foreach($reflection_method->getParameters() as $index=>$param){
-        $ParamClass = $param->getClass();
         $param_reflection_object = $param->getClass();
+        if(is_null($param_reflection_object) && !empty($custom_args)){
+         $out[] = current($custom_args);
+         array_shift($custom_args);
+        }else if(!is_null($param_reflection_object)){
+         $out[] = $this->service_container->make($param_reflection_object->getName());   
+        }
       } 
      }
-     return [];
+     return $out;
     }
 
 }

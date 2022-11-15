@@ -41,7 +41,7 @@ class Application{
     ServiceProvider::load_providers();
     return $this;
   }
-  public function make(string $class){
-    return $this->service_container()->make($class);
+  public function make(string $class, array $constructor_args = []){
+    return $this->service_container()->make($class, $constructor_args);
   }
 }
