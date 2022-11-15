@@ -44,4 +44,8 @@ class Application{
   public function make(string $class, array $constructor_args = []){
     return $this->service_container()->make($class, $constructor_args);
   }
+  public function bind($class, $binding){
+   $this->service_container()->register_binding($class, $binding);
+   return $this; 
+  }
 }
