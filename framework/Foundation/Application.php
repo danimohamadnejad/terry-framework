@@ -2,6 +2,7 @@
 namespace Framework\Foundation;
 use Framework\Http\Request;
 use Framework\Routing\Router;
+use Framework\Foundation\ServiceProvider;
 
 class Application{
   private static $instance = null;
@@ -31,5 +32,9 @@ class Application{
    }
    $this->request()->dispatch($route);
    /* $res = $this->request()->set_route($route)->send(); */
+  }
+  public function load_service_providers(){
+    ServiceProvider::load_providers();
+    return $this;
   }
 }
