@@ -5,6 +5,6 @@ class HomeController{
         echo "this is index method";
     }
     public function home(){
-        echo "this is home method";
+        echo "this is home";
     }
 }
