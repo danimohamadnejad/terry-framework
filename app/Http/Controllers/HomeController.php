@@ -9,6 +9,5 @@ class HomeController{
     public function home(){
     }
     public function index2(){
-        
     }
 }
