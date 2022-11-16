@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
-use Framework\Application;
+use Framework\Foundation\Application;
 $app = Application::instance();
 $app->run();
-echo $app->request()->uri();
