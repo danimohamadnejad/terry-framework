@@ -21,12 +21,14 @@ class ServiceContainer{
      }
      return $this; 
     }
+
     public function register_binding($class, $binding){
       if(!isset($this->bindings[$class])){
        $this->bindings[$class] = $binding; 
       }
       return $this;
     }
+
     public static function instance(){
       if(is_null(static::$instance)){
         static::$instance = new ServiceContainer;
@@ -35,10 +37,16 @@ class ServiceContainer{
     }
 
     public function make(string $class, array $args = []){
+      if($this->is_callable_binding($class)){
+        $callable = $this->bindings[$class];
+        return call_user_func($callable);
+      }
       $injection_method = InjectionMethod::make($class, $this);
       $args = $injection_method->set_custom_args($args)->set_name("__construct")->prepare_arguments();
       $reflection = new \ReflectionClass($class);
       return $reflection->newInstanceArgs($args);
     }
-    
+    private function is_callable_binding($class){
+      return isset($this->bindings[$class]) && is_a($this->bindings[$class], \Closure::class);
+    } 
 }
