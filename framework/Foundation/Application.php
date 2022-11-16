@@ -48,4 +48,7 @@ class Application{
    $this->service_container()->register_binding($class, $binding);
    return $this; 
   }
+  public function invoke_method($object, $method_name, $args = []){
+    
+  }
 }

@@ -8,7 +8,9 @@ class HomeController{
         echo $payment_method->get_key();
     }
     public function home(){
+
     }
     public function index2(){
+        
     }
 }
