@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Framework\Http\Request;
+use App\PaymentMethods\PaymentMethod;
 
 class user{
  private profile $profile;
@@ -16,12 +17,19 @@ class user{
  }
 }
 class profile{
+
 }
 class HomeController{
-    public function index($dani){
+    public function index(){
+      $req = app()->make(Request::class);
+      var_dump($req);
     }
     public function home(){
-      $dani = app()->make(user::class, [1,2]);
-      var_dump($dani->get_profile());
+      $user = app()->make(user::class, [1,2]);
+      var_dump($user);
+    }
+    public function index2(){
+      $object = app()->make(PaymentMethod::class);
+      echo $object->get_key(); 
     }
 }
