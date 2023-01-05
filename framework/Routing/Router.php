@@ -16,23 +16,23 @@ class Router{
   } 
   
   public function find_route(){
-   $routes = Route::get_routes_by_method(Request::instance()->get_method());
-   if(empty($routes)){
+    $routes = Route::get_routes_by_method(Request::instance()->get_method());
+    if(empty($routes)){
      throw new \Exception("No route found");
-   }
-   $uri = Request::instance()->uri();
-   $uri_sections = explode("/", $uri);
-   $found_route = null;
-   foreach($routes as $route){
+    }
+    $uri = Request::insance()->uri();
+    $uri_sections = explode('/', $uri);
+    $found_route = null;
+    foreach($routes as $route){
      $route_uri = $route->get_uri_pattern();
-     if($route_uri === $uri){
-      return $route;
+     if($uri == $route_uri){
+       return $route;
      }
-     $route_segments = $route->get_segments();
+     $route_segments = $route->get_segements();
      if(count($uri_sections) > count($route_segments)){
-      continue;
+       continue;
      }
-     $found_route = clone $route;
+     $found_route = $route;
      foreach($route_segments as $index=>$segment){
        $segment_in_uri = isset($uri_sections[$index]) ? $uri_sections[$index] : null;
        if(!$segment->is_parametric() && (is_null($segment_in_uri) || $segment_in_uri!==$segment->get_name())){
@@ -44,8 +44,10 @@ class Router{
        }
      }
      if($found_route)
-      return $found_route;
+     {
+       break;
+     }
+    }
+    return $found_route;
    }
-   return null;
-  }
 }

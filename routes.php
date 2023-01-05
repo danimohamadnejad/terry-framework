@@ -8,8 +8,4 @@ use App\Http\Controllers\HomeController;
         Route::get("", [HomeController::class, 'index2'])->name('index2');
     });
   });
-/*   
-  $routes = Route::get_routes();
-  foreach($routes as $route){
-    echo $route->get_uri_pattern().'<br/>';
-  }   */
+ 
