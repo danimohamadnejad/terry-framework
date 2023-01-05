@@ -28,7 +28,7 @@ class Router{
      if($uri == $route_uri){
        return $route;
      }
-     $route_segments = $route->get_segements();
+     $route_segments = $route->get_segments();
      if(count($uri_sections) > count($route_segments)){
        continue;
      }
