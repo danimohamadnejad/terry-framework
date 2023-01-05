@@ -20,7 +20,7 @@ class Router{
     if(empty($routes)){
      throw new \Exception("No route found");
     }
-    $uri = Request::insance()->uri();
+    $uri = Request::instance()->uri();
     $uri_sections = explode('/', $uri);
     $found_route = null;
     foreach($routes as $route){
@@ -28,7 +28,7 @@ class Router{
      if($uri == $route_uri){
        return $route;
      }
-     $route_segments = $route->get_segements();
+     $route_segments = $route->get_segments();
      if(count($uri_sections) > count($route_segments)){
        continue;
      }
