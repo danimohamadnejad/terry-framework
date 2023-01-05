@@ -20,7 +20,7 @@ class Router{
     if(empty($routes)){
      throw new \Exception("No route found");
     }
-    $uri = Request::insance()->uri();
+    $uri = Request::instance()->uri();
     $uri_sections = explode('/', $uri);
     $found_route = null;
     foreach($routes as $route){
