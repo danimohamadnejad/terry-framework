@@ -1,15 +1,19 @@
 <?php
 namespace App\Http\Controllers;
 class HomeController{
-    public function index($name){
-        echo "hello ${name}";
+    public function show_products(){
+        die('products');
     }
-    
-    public function index2(){
-            echo "index 2 here";
+    public function show_product($id){
+        die('product: '.$id);
     }
-
-    public function home($name){
-        echo $name;
+    public function show_users(){
+        die('users');
+    }
+    public function show_user($id){
+        die("user: ".$id);
+    }
+    public function show_user_profile($id){
+        die("profile of user with id: ".$id);
     }
 }

@@ -1,11 +1,22 @@
 <?php
 use Framework\Routing\Route;
 use App\Http\Controllers\HomeController;
-  Route::get("{name}", [HomeController::class, 'home']);
-  Route::group(['prefix'=>'site'], function(){
-    Route::get("{name}", [HomeController::class, 'index'])->name('index');
-    Route::group(['prefix'=>'friends'], function(){
-        Route::get("", [HomeController::class, 'index2'])->name('index2');
+Route::group(['prefix'=>'products',], function(){ 
+    Route::get('', [HomeController::class, 'show_products']);
+    Route::group(['prefix'=>'{id}'], function(){
+        Route::get('', [HomeController::class, 'show_product']);
     });
-  });
- 
+});
+Route::group(['prefix'=>'users'], function(){
+    Route::get('', [HomeController::class, 'show_users']);
+    Route::group(['prefix'=>'{id}'], function(){
+        Route::get('', [HomeController::class, 'show_user']);
+        Route::group(['prefix'=>'profile'], function(){
+            Route::get('', [HomeController::class, 'show_user_profile']);
+        });
+    });
+});
+
+/* 
+Calling group methods on users: [ ['prefix'=>'users'], ['prefix'=>'{id'}], ['prefix'=>'profile'] ]
+*/
