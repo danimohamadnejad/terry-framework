@@ -16,4 +16,7 @@ class HomeController{
     public function show_user_profile($id){
         die("profile of user with id: ".$id);
     }
+    public function show_home(){
+        die('this is home');
+    }
 }
