@@ -12,8 +12,8 @@ Route::group(['prefix'=>'users', 'alias'=>'users.'], function(){
     Route::get('', [HomeController::class, 'show_users'])->name('search');     /* /users */
     Route::group(['prefix'=>'{id}'], function(){               
         Route::get('', [HomeController::class, 'show_user'])->name('show');  /* /users/13 */ 
-        Route::group(['prefix'=>'profile'], function(){
-            Route::get('', [HomeController::class, 'show_user_profile'])->name('profile'); /* /users/13/profile */ 
+        Route::group(['prefix'=>'profile', 'alias'=>'profile.'], function(){
+            Route::get('', [HomeController::class, 'show_user_profile'])->name('show'); /* /users/13/profile */ 
         });
     });
 });
