@@ -22,3 +22,7 @@ function app_path(){
 function app(){
  return Application::instance();
 }
+function dd($var){
+    var_dump($var);
+    exit;
+}
