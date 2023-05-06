@@ -22,3 +22,13 @@ function app_path(){
 function app(){
  return Application::instance();
 }
+function dd($obj){
+    var_dump($obj);exit;
+}
+function print_class_methods($obj){
+    foreach(get_class_methods($obj) as $method){
+        echo $method."<br/>";
+    }
+    exit;
+    
+}
