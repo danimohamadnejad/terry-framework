@@ -45,16 +45,20 @@ class InjectionMethod {
          $out[] = current($custom_args);
          array_shift($custom_args);
         }else if(!is_null($param_reflection_object)){
-         $new_arg = null;
+         $arg = null;
          if(!empty($custom_args)){
-            $new_arg = current($custom_args);
-            array_shift($custom_args);
-         }else{
-            if(!$param->allowsNull()){
-                $new_arg = $this->service_container->make($param_reflection_object->getName());
-            }
+            $custom_arg = current($custom_args);
+            if(is_object($custom_arg) && get_class($custom_arg) == $param_reflection_object->name){
+             $arg = $custom_arg;
+             array_shift($custom_args);   
+            } 
          }
-         $out[] = $new_arg;   
+         if(is_null($arg)){
+            if(!$param->allowsNull()){
+                $arg = $this->service_container->make($param_reflection_object->getName());
+             }   
+         }
+         $out[] = $arg;
         }
       } 
      }
