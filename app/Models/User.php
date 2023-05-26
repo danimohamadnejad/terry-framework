@@ -7,7 +7,7 @@ class User{
     public $age;
     public ?Address $address = null;
 
-    public function __construct($name, $age, Address $address){
+    public function __construct(Address $address, $name, $age){
         $this->name = $name;    
         $this->age = $age;
         $this->address = $address;
