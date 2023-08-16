@@ -10,6 +10,7 @@ class RequestDispatcher {
     $ControllerClass = $route->get_controller_class();
     $controller_method = $route->get_controller_method();
     $controller_instance = new $ControllerClass;
-    return call_user_func_array([$controller_instance, $controller_method], array_values($request_parameters));
+    $method_args = app()->service_container()->prepare_method_args($ControllerClass, $controller_method, array_values($request_parameters));
+    return call_user_func_array([$controller_instance, $controller_method], $method_args);
    }
 }

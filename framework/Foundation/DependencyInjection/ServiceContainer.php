@@ -35,7 +35,11 @@ class ServiceContainer{
       } 
       return static::$instance; 
     }
-
+    public function prepare_method_args($class, $method, $custom_args = []){
+     $injection_method = InjectionMethod::make($class, $this);
+     $args = $injection_method->set_custom_args($custom_args)->set_name($method)->prepare_arguments();
+     return $args; 
+    }
     public function make(string $class, array $args = []){
       if(isset($this->bindings[$class])){
         $class = $this->bindings[$class];

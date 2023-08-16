@@ -10,4 +10,8 @@ class HomeController{
     }
     public function index2(){
     }
+    public function show_user(user $user, $id){
+        var_dump($user);
+        var_dump($id);
+    }
 }
