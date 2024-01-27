@@ -28,8 +28,5 @@ class View {
      }
      return $view_content;
     }
-    protected function remove_build_trailing_1($build){
-      return substr($build, 0, strrpos($build, '1'));      
-    }
     
 }

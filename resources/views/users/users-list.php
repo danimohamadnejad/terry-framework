@@ -2,9 +2,13 @@
  $layout = 'layouts.app';
 ?>
 <div class="my-3">
-    <div class="card">
-        <div class="card-body">
-            my name is <?php echo $name;?>
-        </div>
+    <div class="row">
+        <?php
+         foreach($users as $u){
+            echo ($u['id']);
+            ?>
+            <?php
+         }
+        ?>
     </div>
 </div>

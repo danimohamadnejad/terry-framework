@@ -48,3 +48,6 @@ function host(){
 function public_url($path){
   return host()."/{$path}";      
 }
+function include_view($view, array $data = []){
+    return view($view, $data)->render();
+}
