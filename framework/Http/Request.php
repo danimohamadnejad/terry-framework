@@ -71,6 +71,6 @@ class Request{
   }
   
   public function dispatch(Route $route){
-    $res = $this->dispatcher->dispatch($route);
+    return $this->dispatcher->dispatch($route);
   }
 }

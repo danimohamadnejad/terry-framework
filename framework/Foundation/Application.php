@@ -31,7 +31,8 @@ class Application{
    if(is_null($route)){
     throw new \Exception("Route not found");
    }
-   $this->request()->dispatch($route);
+   $response = $this->request()->dispatch($route);
+   $response->send();exit;
    /* $res = $this->request()->set_route($route)->send(); */
   }
   public function service_container(){

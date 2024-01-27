@@ -6,7 +6,8 @@ use App\PaymentMethods\PaymentMethod;
 class HomeController{
     public function index(Request $req, PaymentMethod $payment_method){
     }
-    public function home(){
+    public function home(Request $req){
+     return response()->view('users.users-list', ['name'=>'danial']);   
     }
     public function index2(){
     }
