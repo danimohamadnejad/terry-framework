@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?php echo public_url('bs5/css/bootstrap.min.css')?>">
 </head>
 <body>
-    <h2>This is header</h2>
+    <h2><?php echo $app_name;?></h2>
     <hr>    
     <?php echo $view_content;?>
     <h3>This is footer</h3>

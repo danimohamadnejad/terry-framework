@@ -4,7 +4,10 @@ class View {
     protected array $data;
     protected string $view;
     protected $layout = '';
-
+    protected static $shared_data = [];
+    public static function share(array $data){
+        static::$shared_data = $data;
+    } 
     public function data(array $data){
       $this->data = $data;
       return $this;  
@@ -18,6 +21,7 @@ class View {
     }
     protected function build(){
      extract($this->data);
+     extract(static::$shared_data);
      ob_start();
      require_once (views_path(str_replace('.', '/', $this->view).'.php'));
      $view_content = ob_get_clean();

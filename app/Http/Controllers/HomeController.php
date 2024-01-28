@@ -7,11 +7,7 @@ class HomeController{
     public function index(Request $req, PaymentMethod $payment_method){
     }
     public function home(Request $req){
-     $data = [
-        ['id'=>2, 'name'=>'danial'], 
-        ['id'=>3, 'name'=>'alex']
-     ];
-     return response()->view('users.users-list', ['users'=>$data,]);   
+     return response()->view('users.users-list', ['name'=>'danial']);   
     }
     public function index2(){
     }

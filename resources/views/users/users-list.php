@@ -1,14 +1,11 @@
+<!-- needs $user variable -->
 <?php
  $layout = 'layouts.app';
 ?>
-<div class="my-3">
-    <div class="row">
+<div class="card">
+    <div class="card-body">
         <?php
-         foreach($users as $u){
-            echo ($u['id']);
-            ?>
-            <?php
-         }
+         echo include_view('users.user-details', ['name'=>$name,]);
         ?>
     </div>
 </div>
