@@ -12,6 +12,7 @@ class Route {
     private $uri_pattern = '';
     private $method = '';
     private $segments = [];
+    private $middleware_names = [];
 
     private function __construct(string $uri_pattern, array $destination = []){
         $this->uri_pattern = $uri_pattern;
@@ -122,5 +123,11 @@ class Route {
     }
     public function get_name(){
         return $this->name;
+    }
+    public function middleware($name){
+        if(!in_array($name, $this->middleware_names)){
+            $this->middleware_names[] = $name;
+        }
+        return $this;
     }
 }

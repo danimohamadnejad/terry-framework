@@ -4,18 +4,24 @@ use Framework\Http\Request;
 use Framework\Routing\Router;
 use Framework\Foundation\ServiceProvider;
 use Framework\Foundation\DependencyInjection\ServiceContainer;
+use Framework\Http\Middleware;
+use Framework\Http\Response;
 
 class Application{
   private static $instance = null;
-
+  
   private function __construct(){
-  } 
+  }
   public static function instance(){
     if(is_null(static::$instance)){
         static::$instance = new Application();
     }
     return static::$instance;
   } 
+  public function middleware(){
+    return Middleware::instance();
+  }
+
   public function router(){
     return Router::instance();
   }
@@ -31,9 +37,18 @@ class Application{
    if(is_null($route)){
     throw new \Exception("Route not found");
    }
-   $response = $this->request()->dispatch($route);
-   $response->send();exit;
+   $response = $this->middleware()->set_route($route)->run();
+   if(is_a($response, Response::class)){
+    $response->send();exit;
+   }else{
+    dd($response);  
+   }
    /* $res = $this->request()->set_route($route)->send(); */
+  } 
+  private function create_request_dispatch_closure($route){
+   return function(Request $request) use($route){
+    return call_user_func_array([$request, 'dispatch'], [$route]);
+   };
   }
   public function service_container(){
     return ServiceContainer::instance();
