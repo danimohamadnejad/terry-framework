@@ -13,6 +13,7 @@ class Route {
     private $method = '';
     private $segments = [];
     private $middleware_names = [];
+    private $middleware_names_current_index = -1;
 
     private function __construct(string $uri_pattern, array $destination = []){
         $this->uri_pattern = $uri_pattern;
@@ -124,10 +125,16 @@ class Route {
     public function get_name(){
         return $this->name;
     }
-    public function middleware($name){
-        if(!in_array($name, $this->middleware_names)){
-            $this->middleware_names[] = $name;
+    public function middleware($middleware_names){
+        $middleware_names = is_array($middleware_names) ? $middleware_names : [$middleware_names];
+        foreach($middleware_names as $name){
+            if(!in_array($name, $this->middleware_names)){
+                $this->middleware_names[] = $name;
+            }
         }
         return $this;
+    }
+    public function get_middleware_names(){
+        return $this->middleware_names;
     }
 }

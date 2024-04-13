@@ -43,13 +43,7 @@ class Application{
    }else{
     dd($response);  
    }
-   /* $res = $this->request()->set_route($route)->send(); */
   } 
-  private function create_request_dispatch_closure($route){
-   return function(Request $request) use($route){
-    return call_user_func_array([$request, 'dispatch'], [$route]);
-   };
-  }
   public function service_container(){
     return ServiceContainer::instance();
   }
